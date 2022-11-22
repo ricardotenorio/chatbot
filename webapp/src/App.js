@@ -7,11 +7,11 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container min-vh-100 d-flex justify-content-center align-items-center">
       <AuthProvider>
 
         <Routes>
-          
+
           <Route path='/'
             exact
             element={
