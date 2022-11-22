@@ -3,6 +3,18 @@ const bcrypt = require('bcryptjs');
 const { createToken } = require('../utils/jwtToken');
 
 module.exports = {
+    async verifyAuth(request, response) {
+        try {
+            const user = { id: request.authId, username: request.username, }
+
+            return response.json(user);
+        } catch (error) {
+            console.log(error);
+            
+            return response.sendStatus(500);
+        }
+    },
+
     async login(request, response) {
         try {
             const { password } = request.body;
@@ -17,16 +29,14 @@ module.exports = {
                 return response.status(401).json('Invalid password');
             }
 
-            user.token = 'Bearer ' + await createToken({ username: user.username });
+            const token = 'Bearer ' + await createToken({ id: user._id, username: user.username });
             user.password = undefined;
 
-            console.log(user);
-
-            return response.json(user);
+            return response.json({ user, token });
         } catch (error) {
             console.log(error);
             
-            return response.sendStatus(500)
+            return response.sendStatus(500);
         }
     }
 }

@@ -11,18 +11,19 @@ const verifyToken = (request, response, next) => {
     const parts = authHeader.split(' ');
 
     if (parts.length !== 2)
-        return response.sendStatus(401);
+        return response.sendStatus(400);
 
     const [scheme, token] = parts;
 
     if (!/^Bearer$/i.test(scheme))
-        return response.sendStatus(401);
+        return response.sendStatus(400);
 
     jwt.verify(token, config.TOKEN_KEY, (error, decoded) => {
         if (error)
             return response.status(401).json('invalid token');
 
         request.authId = decoded.params.id;
+        request.username = decoded.params.username;
 
         return next();
     }
