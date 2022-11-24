@@ -5,7 +5,7 @@ module.exports = {
         try {
             const newsCollection = await News.find();
 
-            return response.json({ newsCollection });
+            return response.json(newsCollection);
         } catch (error) {
             console.log(error);
 
@@ -21,7 +21,7 @@ module.exports = {
                 return response.sendStatus(404);
             }
 
-            return response.json({ news });
+            return response.json(news);
         } catch (error) {
             console.log(error);
 
@@ -33,7 +33,7 @@ module.exports = {
         try {
             const news = await News.create({ ...request.body });
 
-            return response.status(201).json({ news });
+            return response.status(201).json(news);
         } catch (error) {
             console.log(error);
 
@@ -55,7 +55,7 @@ module.exports = {
                 return response.sendStatus(404);
             }
 
-            return response.json({ news });
+            return response.json(news);
         } catch (error) {
             console.log(error);
 
@@ -71,7 +71,7 @@ module.exports = {
         try {
             const news = await News.findOneAndDelete({ _id: request.params.id });
 
-            return response.json({ news });
+            return response.json(news);
         } catch (error) {
             console.log(error);
 

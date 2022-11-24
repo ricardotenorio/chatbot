@@ -19,13 +19,14 @@ const NewsSchema = new mongoose.Schema(
     },
     image_url: {
         type: String,
+        required:true,
+        minlength: 10,
         trim: true,
     },
     news_url: {
         type: String,
         required: true,
         minlength: 10,
-        maxlength: 512,
         trim:true,
     },
     category: {

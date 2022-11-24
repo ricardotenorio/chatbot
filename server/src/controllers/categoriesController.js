@@ -3,7 +3,7 @@ const News = require('../models/news');
 
 module.exports = {
     async index(request, response) {
-        return response.json({ categories });
+        return response.json(categories);
     },
 
     async show(request, response) {
@@ -16,7 +16,7 @@ module.exports = {
         try {
             const newsCollection = await News.find({ category }).sort({ createdAt: -1 }).limit(10);
 
-            return response.json({ newsCollection });
+            return response.json(newsCollection);
         } catch (error) {
             console.log(error);
 
