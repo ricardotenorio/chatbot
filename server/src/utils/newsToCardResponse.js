@@ -1,45 +1,54 @@
 module.exports = {
     newsToCardResponse(newsCollection) {
-        const fullfillment = { fulfillmentMessages: [] }
+        const fulfillment = { fulfillmentMessages: [] }
 
         if (newsCollection.length === 0) {
-            fullfillment.fulfillmentMessages.push({
-                text: {
-                    text: ['Nenhuma notícia encontrada.'],
+            fulfillment.fulfillmentMessages.push({
+                quickReplies: {
+                    title: "Nenhuma notícia encontrada, selecione outro tema.",
+                    quickReplies: [
+                        "Esportes",
+                        "Política",
+                        "Entretenimento",
+                        "Famosos"
+                    ]
                 },
             });
-        } else {
 
-            const cards = newsCollection.map((news) => {
-                return {
-                    title: news.title,
-                    subtitle: news.description,
-                    image_url: news.image_url,
-                    buttons: [
-                        {
-                            postback: news.news_url,
-                        }
-                    ]
-                }
-            })
+            return fulfillment;
+        }
 
-            const cardsResponse = {
+        const cards = newsCollection.map((news) => {
+            return {
+                title: news.title,
+                image_url: news.image_url,
+                subtitle: news.description,
+                buttons: [
+                    {
+                        type: 'web_url',
+                        url: news.news_url,
+                        title: 'Visitar Site'
+                    }
+                ]
+            }
+        })
+
+        const cardsResponse = {
+            payload: {
                 facebook: {
                     attachment: {
                         type: "template",
                         payload: {
-                            elements: [
-                                cards
-                            ],
-                            template_type: "generic"
+                            template_type: "generic",
+                            elements: cards
                         }
                     }
                 }
             }
-
-            fullfillment.fulfillmentMessages.push(cardsResponse);
         }
 
-        return fullfillment;
+        fulfillment.fulfillmentMessages.push(cardsResponse);
+
+        return fulfillment;
     }
 }

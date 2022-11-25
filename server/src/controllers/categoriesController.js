@@ -11,8 +11,6 @@ module.exports = {
         try {
             const category = request.body.queryResult.queryText.toLowerCase();
 
-            // const category = 'esportes';
-
             if (!categories.includes(category)) {
                 return response.sendStatus(404);
             }
