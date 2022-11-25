@@ -8,36 +8,35 @@ module.exports = {
                     text: ['Nenhuma notícia encontrada.'],
                 },
             });
-        } else {
 
-            const cards = newsCollection.map((news) => {
-                return {
-                    title: news.title,
-                    subtitle: news.description,
-                    image_url: news.image_url,
-                    buttons: [
-                        {
-                            postback: news.news_url,
-                        }
-                    ]
-                }
-            })
+            return fullfillment;
+        }
 
-            const cardsResponse = {
-                facebook: {
-                    attachment: {
-                        type: "template",
-                        payload: {
-                            elements: [
-                                cards
-                            ],
-                            template_type: "generic"
-                        }
+        const cards = newsCollection.map((news) => {
+            return {
+                title: news.title,
+                subtitle: news.description,
+                image_url: news.image_url,
+                buttons: [
+                    {
+                        postback: news.news_url,
+                    }
+                ]
+            }
+        })
+
+        const cardsResponse = {
+            facebook: {
+                attachment: {
+                    type: "template",
+                    payload: {
+                        elements: [
+                            cards
+                        ],
+                        template_type: "generic"
                     }
                 }
             }
-
-            fullfillment.fulfillmentMessages.push(cardsResponse);
         }
 
         return cardsResponse;
