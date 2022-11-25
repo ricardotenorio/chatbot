@@ -27,14 +27,19 @@ module.exports = {
         })
 
         const cardsResponse = {
-            payload: {
-                elements: cards,
-                template_type: "generic"
+            facebook: {
+                attachment: {
+                    type: "template",
+                    payload: {
+                        elements: cards,
+                        template_type: "generic"
+                    }
+                }
             }
         }
 
+        fullfillment.fulfillmentMessages.push(cardsResponse);
 
-
-        return cardsResponse;
+        return fullfillment;
     }
 }
