@@ -12,7 +12,7 @@ router.post('/auth', auth, authController.verifyAuth);
 
 // categories
 router.get('/categories', auth, categoriesController.index);
-router.get('/categories/:category', categoriesController.show);
+router.post('/categories', categoriesController.show);
 
 // news
 router.get('/news', auth, newsController.index);
