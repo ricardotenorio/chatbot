@@ -40,6 +40,6 @@ module.exports = {
             fullfillment.fulfillmentMessages.push(cardsResponse);
         }
 
-        return fullfillment;
+        return cardsResponse;
     }
 }
