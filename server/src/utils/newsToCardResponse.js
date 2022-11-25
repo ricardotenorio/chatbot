@@ -6,6 +6,17 @@ module.exports = {
             fullfillment.fulfillmentMessages.push({
                 text: {
                     text: ['Nenhuma notícia encontrada.'],
+                }
+            });
+            fullfillment.fulfillmentMessages.push({
+                quickReplies: {
+                    title: "Selecione uma das opções a seguir para ver notícias sobre o tema selecionado.",
+                    quickReplies: [
+                        "Esportes",
+                        "Política",
+                        "Entretenimento",
+                        "Famosos"
+                    ]
                 },
             });
 
