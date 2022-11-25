@@ -21,6 +21,7 @@ module.exports = {
                     {
                         type: 'web_url',
                         url: news.news_url,
+                        title: 'Visitar Site'
                     }
                 ]
             }
