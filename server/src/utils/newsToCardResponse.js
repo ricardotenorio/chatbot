@@ -27,18 +27,15 @@ module.exports = {
         })
 
         const cardsResponse = {
-            facebook: {
-                attachment: {
-                    type: "template",
-                    payload: {
-                        elements: [
-                            cards
-                        ],
-                        template_type: "generic"
-                    }
-                }
+            payload: {
+                elements: [
+                    cards
+                ],
+                template_type: "generic"
             }
         }
+
+
 
         return cardsResponse;
     }
