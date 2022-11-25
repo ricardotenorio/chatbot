@@ -15,8 +15,8 @@ module.exports = {
         const cards = newsCollection.map((news) => {
             return {
                 title: news.title,
-                subtitle: news.description,
                 image_url: news.image_url,
+                subtitle: news.description,
                 buttons: [
                     {
                         type: 'web_url',
@@ -32,15 +32,15 @@ module.exports = {
                 attachment: {
                     type: "template",
                     payload: {
-                        elements: cards,
-                        template_type: "generic"
+                        template_type: "generic",
+                        elements: cards
                     }
                 }
             }
         }
 
-        fullfillment.fulfillmentMessages.push(cardsResponse);
+        // fullfillment.fulfillmentMessages.push(cardsResponse);
 
-        return fullfillment;
+        return cardsResponse;
     }
 }
