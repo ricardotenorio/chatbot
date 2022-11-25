@@ -3,7 +3,7 @@ module.exports = {
         const fulfillment = { fulfillmentMessages: [] }
 
         if (newsCollection.length === 0) {
-            fullfillment.fulfillmentMessages.push({
+            fulfillment.fulfillmentMessages.push({
                 quickReplies: {
                     title: "Selecione uma das opções a seguir para ver notícias sobre o tema selecionado.",
                     quickReplies: [
