@@ -1,6 +1,6 @@
 module.exports = {
     newsToCardResponse(newsCollection) {
-        const fullfillment = { fulfillmentMessages: [] }
+        const fulfillment = { fulfillmentMessages: [] }
 
         if (newsCollection.length === 0) {
             fullfillment.fulfillmentMessages.push({
@@ -9,7 +9,7 @@ module.exports = {
                 },
             });
 
-            return fullfillment;
+            return fulfillment;
         }
 
         const cards = newsCollection.map((news) => {
@@ -28,19 +28,21 @@ module.exports = {
         })
 
         const cardsResponse = {
-            facebook: {
-                attachment: {
-                    type: "template",
-                    payload: {
-                        template_type: "generic",
-                        elements: cards
+            payload: {
+                facebook: {
+                    attachment: {
+                        type: "template",
+                        payload: {
+                            template_type: "generic",
+                            elements: cards
+                        }
                     }
                 }
             }
         }
 
-        // fullfillment.fulfillmentMessages.push(cardsResponse);
+        fulfillment.fulfillmentMessages.push(cardsResponse);
 
-        return cardsResponse;
+        return fulfillment;
     }
 }
