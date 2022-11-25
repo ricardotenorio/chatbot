@@ -74,9 +74,6 @@ export function AuthProvider({ children }) {
             setUser(user);
 
             setErrorMessage(null);
-
-            console.log('verifying...');
-            console.log(user);
         } catch (error) {
             setErrorMessage(error);
         }

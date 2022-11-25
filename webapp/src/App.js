@@ -4,10 +4,13 @@ import Home from './components/Home';
 import Login from './components/Login';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
-    <div className="container min-vh-100 d-flex justify-content-center align-items-center">
+
+    //  d-flex justify-content-center align-items-center
+    <div className="container-fluid m-0 min-vh-100">
       <AuthProvider>
 
         <Routes>
@@ -17,6 +20,13 @@ function App() {
             element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            } />
+
+          <Route path='/dashboard'
+            element={
+              <ProtectedRoute>
+                <Dashboard />
               </ProtectedRoute>
             } />
 

@@ -19,29 +19,33 @@ const Login = (props) => {
     }
 
     return (
-        <div className='w-50 shadow p-3 text-center bg-light rounded-3'>
-            <h4>Login</h4>
+        <div className="d-flex justify-content-center align-items-center min-vh-100">
 
-            <form className='p-3 text-dark' onSubmit={handleSubmit}>
-                {
-                    errorMessage &&
-                    <div className='p-0 text-center text-danger'>
-                        <p>{errorMessage}</p>
-                    </div>
-                }
-                <label>
-                    <span className='m-2 d-block text-center'>Senha</span>
-                    <input
-                        className='form-control'
-                        type='password'
-                        name='password'
-                        onChange={(event) => setPassword(event.target.value)}
-                        value={password}
-                        minLength={5} />
-                </label>
+            <div className='w-50 shadow p-3 text-center bg-light rounded-3 '>
+                <h4>Login</h4>
 
-                <button className='mx-auto btn btn-primary btn-md d-block mt-3 justify-self-center' type='submit'>Entrar</button>
-            </form>
+                <form className='p-3 text-dark' onSubmit={handleSubmit}>
+                    {
+                        errorMessage &&
+                        <div className='p-0 text-center text-danger'>
+                            <p>{errorMessage}</p>
+                        </div>
+                    }
+                    <label>
+                        <span className='m-2 d-block text-center'>Senha</span>
+                        <input
+                            className='form-control'
+                            type='password'
+                            name='password'
+                            onChange={(event) => setPassword(event.target.value)}
+                            value={password}
+                            minLength={5} />
+                    </label>
+
+                    <button className='mx-auto btn btn-primary btn-md d-block mt-3 justify-self-center' type='submit'>Entrar</button>
+                </form>
+            </div>
+
         </div>
     )
 }

@@ -1,8 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'
 
 const Home = () => {
     const { handleLogout, user, token } = useAuth();
+    const navigate = useNavigate();
 
     if (!user) {
         return <p>carregando...</p>
@@ -11,9 +13,8 @@ const Home = () => {
     return (
         <>
             <div>Home</div>
-            <p>{ token }</p>
-            <p>{ user.id }</p>
-            <p>{ user.username }</p>
+
+            <button onClick={() => navigate('/dashboard')}>dashboard</button>
             <button onClick={handleLogout}>Sair</button>
         </>
     )

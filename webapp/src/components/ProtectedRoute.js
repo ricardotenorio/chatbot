@@ -9,7 +9,6 @@ const ProtectedRoute = ({ children }) => {
     }
 
     if (!user) {
-        console.log('no user');
         verifyAuth()
             .then(() => { return children })
             .catch((error) => console.log(error));
