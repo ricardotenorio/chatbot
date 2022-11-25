@@ -5,7 +5,7 @@ module.exports = {
         if (newsCollection.length === 0) {
             fulfillment.fulfillmentMessages.push({
                 quickReplies: {
-                    title: "Selecione uma das opções a seguir para ver notícias sobre o tema selecionado.",
+                    title: "Nenhuma notícia encontrada, selecione outro tema.",
                     quickReplies: [
                         "Esportes",
                         "Política",
