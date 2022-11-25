@@ -19,7 +19,8 @@ module.exports = {
                 image_url: news.image_url,
                 buttons: [
                     {
-                        postback: news.news_url,
+                        type: 'web_url',
+                        url: news.news_url,
                     }
                 ]
             }
