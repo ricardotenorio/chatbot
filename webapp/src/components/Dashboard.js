@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'
 import Modal from './Modal';
 import Table from './Table';
-import Login from './Login';
 import DeleteForm from './DeleteForm';
 import NewsForm from './NewsForm';
-import { useFetch } from '../hooks/useFetch';
 
 const newsUrl = process.env.REACT_APP_API_URL + '/news';
 const categoriesUrl = process.env.REACT_APP_API_URL + '/categories';
 
 const Dashboard = () => {
     const { token, handleLogout } = useAuth();
-    const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState(false);
     const [action, setAction] = useState();
@@ -76,14 +72,6 @@ const Dashboard = () => {
                 onDelete={doFetch}
                 updateList={setUpdate} />
         }
-    }
-
-    const dummy = {
-        title: 'test 01',
-        description: 'daklçf',
-        image_url: 'aldfjkl',
-        news_url: 'kdalçdfajfksafsdasfl',
-        category: 'política',
     }
 
     const fixedButton = () => {

@@ -38,6 +38,11 @@ const NewsSchema = new mongoose.Schema(
  { 
     timestamps: true
  }
-)
+);
+
+NewsSchema.pre('findOneAndUpdate', function(next) {
+    this.options.runValidators = true;
+    next();
+});
 
 module.exports = mongoose.model('News', NewsSchema);
