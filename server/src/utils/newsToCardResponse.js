@@ -28,9 +28,7 @@ module.exports = {
 
         const cardsResponse = {
             payload: {
-                elements: [
-                    cards
-                ],
+                elements: cards,
                 template_type: "generic"
             }
         }
