@@ -1,15 +1,13 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import Login from './components/Login';
+import Login from './pages/Login';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
-import Dashboard from './components/Dashboard';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
 
-    //  d-flex justify-content-center align-items-center
     <div className="container-fluid m-0 min-vh-100">
       <AuthProvider>
 
@@ -19,7 +17,7 @@ function App() {
             exact
             element={
               <ProtectedRoute>
-                <Home />
+                <Dashboard />
               </ProtectedRoute>
             } />
 
