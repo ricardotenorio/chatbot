@@ -8,6 +8,11 @@ const IMAGE = {
     borderRadius: '7px',
 }
 
+const TDATA = {
+    maxWidth: '225px',
+    height: '118px',
+}
+
 const Table = ({ data, loading, onSelect, openModal, action }) => {
 
     const handleClick = (event, news) => {
@@ -41,11 +46,11 @@ const Table = ({ data, loading, onSelect, openModal, action }) => {
                         data.map((news) => {
                             return (
                                 <tr key={news._id}>
-                                    <td><img src={news.image_url} style={IMAGE} /></td>
-                                    <td className='text-truncate' style={{ maxWidth: '30em' }}>{news.title}</td>
-                                    <td className='text-truncate' style={{ maxWidth: '30em' }}>{news.description}</td>
+                                    <td className='p-0'><img src={news.image_url} style={IMAGE} /></td>
+                                    <td className='text-truncate' style={TDATA}>{news.title}</td>
+                                    <td className='text-truncate' style={TDATA}>{news.description}</td>
                                     <td>{news.category}</td>
-                                    <td className='text-truncate' style={{ maxWidth: '30em' }}>
+                                    <td className='text-truncate' style={TDATA}>
                                         <a
                                             href={news.news_url}
                                             target='_blank'
