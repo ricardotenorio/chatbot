@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 
 const MODAL = {
     backgroundColor: '#fff',
-    position: 'absolute',
-    top: '10%',
-    left: '25%',
-    width: '50%',
+    position: 'fixed',
+    top: '10vh',
+    left: '25vw',
+    width: '50vw',
+    height: '80vh',
     zindex: 100,
+    overflowY: 'auto',
 }
 
 const DROP = {
@@ -20,6 +22,7 @@ const DROP = {
 const NewsForm = ({ news, onClose, categories, method, onPost, updateList }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [editedNews, setEditedNews] = useState({ ...news });
+    const [errorMessage, setErrorMessage] = useState();
 
     const newsUrl = `${process.env.REACT_APP_API_URL}/news/${news ? news._id : ''}`;
 
@@ -28,10 +31,13 @@ const NewsForm = ({ news, onClose, categories, method, onPost, updateList }) => 
         setIsDropdownOpen(false);
     }
 
-    console.log(newsUrl);
-
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (!editedNews.category) {
+            setErrorMessage('Selecione uma categoria');
+            return;
+        }
         
         onPost(newsUrl, method, setEditedNews, editedNews)
             .then(() => {
@@ -55,7 +61,8 @@ const NewsForm = ({ news, onClose, categories, method, onPost, updateList }) => 
                         name='title'
                         onChange={(event) => setEditedNews((prevState) => ({ ...prevState, title: event.target.value }))}
                         defaultValue={news ? news.title : ''}
-                        minLength={2} />
+                        minLength={2}
+                        required />
                 </label>
 
                 <label className='mt-3 mx-auto w-75'>
@@ -66,7 +73,8 @@ const NewsForm = ({ news, onClose, categories, method, onPost, updateList }) => 
                         name='description'
                         onChange={(event) => setEditedNews((prevState) => ({ ...prevState, description: event.target.value }))}
                         defaultValue={news ? news.description : ''}
-                        minLength={2} />
+                        minLength={2}
+                        required />
                 </label>
 
                 <div className='mt-3'>
@@ -107,7 +115,8 @@ const NewsForm = ({ news, onClose, categories, method, onPost, updateList }) => 
                         name='news_url'
                         onChange={(event) => setEditedNews((prevState) => ({ ...prevState, news_url: event.target.value }))}
                         defaultValue={news ? news.news_url : ''}
-                        minLength={10} />
+                        minLength={10}
+                        required />
                 </label>
 
                 <label className='mt-3 mx-auto w-75'>
@@ -118,9 +127,16 @@ const NewsForm = ({ news, onClose, categories, method, onPost, updateList }) => 
                         name='image_url'
                         onChange={(event) => setEditedNews((prevState) => ({ ...prevState, image_url: event.target.value }))}
                         defaultValue={news ? news.image_url : ''}
-                        minLength={10} />
+                        minLength={10}
+                        required />
                 </label>
 
+                {
+                    errorMessage &&
+                    <div>
+                        <p className='text-danger'>{errorMessage}</p>
+                    </div>
+                }
 
                 <div className='m-4 d-flex flex-row justify-content-between'>
                     <button className='btn btn-primary' type='submit'>Enviar</button>
